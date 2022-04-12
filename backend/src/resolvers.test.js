@@ -5,7 +5,7 @@ import resolvers from "./resolvers.js";
 describe("resolvers", () => {
   describe("queries", () => {
     describe("clients", () => {
-        let mockClients;
+      let mockClients;
       beforeAll(() => {
         mockClients = [
           {
@@ -26,6 +26,25 @@ describe("resolvers", () => {
       it("should fetch all clients", async () => {
         const res = await resolvers.Query.clients();
         expect(res).toEqual(mockClients);
+      });
+    });
+  });
+  describe("mutations", () => {
+    describe("createClient", () => {
+      let clientData;
+      let mockSave;
+      beforeAll(() => {
+        clientData = {
+          name: "Joe",
+          email: "joe@gmail.com",
+          company: "Apple",
+        };
+        mockSave = jest.fn();
+        Client.prototype.save = mockSave;
+      });
+      it("should create new client", async () => {
+        await resolvers.Mutation.createClient(null, clientData);
+        expect(mockSave).toHaveBeenCalledTimes(1);
       });
     });
   });
