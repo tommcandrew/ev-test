@@ -12,7 +12,7 @@ const typeDefs = gql`
     name: String!
     email: String
     company: String
-    createdDate: Date
+    createdDate: String
   }
 `;
 
