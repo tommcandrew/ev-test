@@ -9,6 +9,7 @@ export const CLIENTS = gql`
       name
       email
       company
+      createdAt
     }
   }
 `;
