@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { CLIENTS } from "./queries.js";
+import './index.css'
 
 const App = () => {
   const { loading, error, data } = useQuery(CLIENTS, {
@@ -12,8 +13,11 @@ const App = () => {
 
   return (
     <div>
-      <h1>Client List</h1>
-      <table>
+      <header>
+      <div className="clients__title">Client List</div>
+      </header>
+        <div className="clients__container">
+        <table className="clients__table">
         <thead>
           <tr>
             <th>Name</th>
@@ -21,12 +25,15 @@ const App = () => {
             <th>Company</th>
           </tr>
         </thead>
-        {data.clients.map((client, i) => <tr key={i}>
+        <tbody>
+        {data.clients.map((client) => <tr key={client.email} className="clients__row">
           <td>{client.name}</td>
           <td>{client.email}</td>
           <td>{client.company}</td>
         </tr>)}
+        </tbody>
       </table>
+        </div>
     </div>
   );
 };
