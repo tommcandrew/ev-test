@@ -2,7 +2,7 @@ import Client from "./models/Client.js";
 
 const resolvers = {
   Query: {
-    clients: () => Client.find(),
+    clients: async () => Client.find(),
   },
   Mutation: {
     createClient: async (_, { name, email, company }) => {
