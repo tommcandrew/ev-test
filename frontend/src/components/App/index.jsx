@@ -17,7 +17,13 @@ const App = () => {
   const { loading, error, data } = useQuery(CLIENTS, {
     onCompleted: () => console.log(data),
   });
-  const [createClient] = useMutation(CREATE_CLIENT);
+  const [createClient] = useMutation(CREATE_CLIENT, {
+    refetchQueries: [
+      {
+        query: CLIENTS,
+      },
+    ],
+  });
 
   let tableContent;
 
