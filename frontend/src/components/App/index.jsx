@@ -22,6 +22,8 @@ const App = () => {
   });
 
   const [createClient] = useMutation(CREATE_CLIENT, {
+    onError: (err) => console.log("err :>> ", err),
+    onCompleted: () => setShowModal(false),
     refetchQueries: [
       {
         query: CLIENTS,
@@ -67,28 +69,34 @@ const App = () => {
       </tr>
     );
   } else {
-    tableContent = data.clients.filter(client => [client.name, client.email, client.company].some(val => val.toLowerCase().includes(searchText))).map((client) => {
-      const formattedCreatedDate = new Date(
-        Number(client.createdAt)
-      ).toLocaleDateString("en-UK");
-      return (
-        <tr key={client.email} className="clients__row">
-          <td>{client.name}</td>
-          <td>{client.email}</td>
-          <td>{client.company}</td>
-          <td>{formattedCreatedDate}</td>
-          <td>
-            <button
-              aria-label="delete"
-              className="clients__delete"
-              onClick={() => handleDeleteClient(client.id)}
-            >
-              <FaTrashAlt color="white" />
-            </button>
-          </td>
-        </tr>
-      );
-    });
+    tableContent = data.clients
+      .filter((client) =>
+        [client.name, client.email, client.company].some((val) =>
+          val.toLowerCase().includes(searchText)
+        )
+      )
+      .map((client) => {
+        const formattedCreatedDate = new Date(
+          Number(client.createdAt)
+        ).toLocaleDateString("en-UK");
+        return (
+          <tr key={client.email} className="clients__row">
+            <td>{client.name}</td>
+            <td>{client.email}</td>
+            <td>{client.company}</td>
+            <td>{formattedCreatedDate}</td>
+            <td>
+              <button
+                aria-label="delete"
+                className="clients__delete"
+                onClick={() => handleDeleteClient(client.id)}
+              >
+                <FaTrashAlt color="white" />
+              </button>
+            </td>
+          </tr>
+        );
+      });
   }
 
   const handleChangeName = (e) => {
@@ -102,12 +110,11 @@ const App = () => {
   };
 
   const handleSave = () => {
-    setShowModal(false);
     createClient({ variables: { name, email, company } });
   };
 
   const handleSearch = (e) => {
-    setSearchText(e.target.value)
+    setSearchText(e.target.value);
   };
 
   return (
