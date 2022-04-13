@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { CLIENTS } from "./queries.js";
-import "./index.css";
+import "../../styles/index.css";
 
 const App = () => {
   const { loading, error, data } = useQuery(CLIENTS, {
