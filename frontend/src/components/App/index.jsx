@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import Skeleton from "react-loading-skeleton";
-import { CLIENTS, SAVE_CLIENT } from "../../graphql/queries/clients";
+import CLIENTS from "../../graphql/queries/clients";
+import CREATE_CLIENT from "../../graphql/mutations/createClient.js";
 import Modal from "../Modal";
-import {LOADING_ERROR} from '../../constants/notificationMessages'
+import { LOADING_ERROR } from "../../constants/notificationMessages";
 import "../../styles/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
+
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,18 +17,26 @@ const App = () => {
   const { loading, error, data } = useQuery(CLIENTS, {
     onCompleted: () => console.log(data),
   });
-  const [saveClient] = useMutation(SAVE_CLIENT, {
-    onCompleted: (data) => {
-      console.log('data :>> ', data);
-    },
-  });
+  const [createClient] = useMutation(CREATE_CLIENT);
 
   let tableContent;
 
   if (loading) {
-    tableContent = <tr><td colSpan={4}><Skeleton count={5} height={50} /></td></tr>;
+    tableContent = (
+      <tr>
+        <td colSpan={4}>
+          <Skeleton count={5} height={50} />
+        </td>
+      </tr>
+    );
   } else if (error) {
-    tableContent = <tr><td colSpan={4} className="clients__error"><span>{LOADING_ERROR}</span></td></tr>;
+    tableContent = (
+      <tr>
+        <td colSpan={4} className="clients__error">
+          <span>{LOADING_ERROR}</span>
+        </td>
+      </tr>
+    );
   } else {
     tableContent = data.clients.map((client) => {
       const formattedCreatedDate = new Date(
@@ -54,14 +64,8 @@ const App = () => {
   };
 
   const handleSave = () => {
-    setShowModal(false)
-    saveClient({
-      variables: {
-        name,
-        email,
-        company
-      }
-    })
+    setShowModal(false);
+    createClient({ variables: { name, email, company } });
   };
 
   return (
@@ -71,7 +75,9 @@ const App = () => {
       </header>
       <div className="clients__container">
         <div className="clients__buttons">
-          <button className="button" onClick={() => setShowModal(true)}>New</button>
+          <button className="button" onClick={() => setShowModal(true)}>
+            New
+          </button>
         </div>
         <table className="clients__table">
           <thead>
@@ -128,7 +134,9 @@ const App = () => {
             />
           </div>
           <div className="form__footer">
-            <button className="button" onClick={handleSave} type="button">Save</button>
+            <button className="button" onClick={handleSave} type="button">
+              Save
+            </button>
           </div>
         </form>
       </Modal>
