@@ -87,6 +87,7 @@ const App = () => {
               <th>Email</th>
               <th>Company</th>
               <th>Created</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{tableContent}</tbody>
@@ -106,7 +107,6 @@ const App = () => {
               className="form__input"
               type="text"
               id="name"
-              placeholder="Name"
               onChange={handleChangeName}
             />
           </div>
@@ -118,7 +118,6 @@ const App = () => {
               className="form__input"
               type="text"
               id="email"
-              placeholder="Email"
               onChange={handleChangeEmail}
             />
           </div>
@@ -130,7 +129,6 @@ const App = () => {
               className="form__input"
               type="text"
               id="company"
-              placeholder="Company"
               onChange={handleChangeCompany}
             />
           </div>
