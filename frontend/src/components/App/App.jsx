@@ -2,6 +2,8 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { CLIENTS } from "./queries.js";
 import "../../styles/index.css";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const App = () => {
   const { loading, error, data } = useQuery(CLIENTS, {
@@ -10,6 +12,28 @@ const App = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
+
+  let tableContent;
+
+  if (loading) {
+    tableContent = <Skeleton count={5} height={50} />;
+  } else if (error) {
+    tableContent = <span>The data could not be loaded.</span>;
+  } else {
+    tableContent = data.clients.map((client) => {
+      const formattedCreatedDate = new Date(
+        Number(client.createdAt)
+      ).toLocaleDateString("en-UK");
+      return (
+        <tr key={client.email} className="clients__row">
+          <td>{client.name}</td>
+          <td>{client.email}</td>
+          <td>{client.company}</td>
+          <td>{formattedCreatedDate}</td>
+        </tr>
+      );
+    });
+  }
 
   return (
     <div>
@@ -26,21 +50,7 @@ const App = () => {
               <th>Created</th>
             </tr>
           </thead>
-          <tbody>
-            {data.clients.map((client) => {
-              const formattedCreatedDate = new Date(
-                Number(client.createdAt)
-              ).toLocaleDateString("en-UK");
-              return (
-                <tr key={client.email} className="clients__row">
-                  <td>{client.name}</td>
-                  <td>{client.email}</td>
-                  <td>{client.company}</td>
-                  <td>{formattedCreatedDate}</td>
-                </tr>
-              );
-            })}
-          </tbody>
+          <tbody>{tableContent}</tbody>
         </table>
       </div>
     </div>
