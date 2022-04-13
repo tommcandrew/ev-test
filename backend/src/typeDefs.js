@@ -5,7 +5,7 @@ const typeDefs = gql`
     clients: [Client]!
   }
   type Mutation {
-    createClient(name: String!, email: String!, company: String!): Client!
+    createClient(name: String, email: String, company: String): Client!
   }
   type Client {
     id: ID!
