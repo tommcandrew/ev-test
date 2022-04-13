@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from "react-loading-skeleton";
 import { CLIENTS } from "./queries.js";
-import Modal from '../Modal'
+import Modal from "../Modal";
 import "../../styles/index.css";
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-loading-skeleton/dist/skeleton.css";
 
 const App = () => {
+  const [showModal, setShowModal] = useState(false);
   const { loading, error, data } = useQuery(CLIENTS, {
     onCompleted: () => console.log(data),
   });
@@ -40,7 +41,7 @@ const App = () => {
       </header>
       <div className="clients__container">
         <div className="clients__buttons">
-          <button>New</button>
+          <button onClick={() => setShowModal(true)}>New</button>
         </div>
         <table className="clients__table">
           <thead>
@@ -54,7 +55,28 @@ const App = () => {
           <tbody>{tableContent}</tbody>
         </table>
       </div>
-      <Modal />
+      <Modal
+        title="New Client"
+        closeModal={() => setShowModal(false)}
+        width="600px"
+        isOpen={showModal}
+        pb="40px"
+      >
+        <form>
+          <div className="form__group">
+            <label className="form__label" htmlFor="name">Name</label>
+            <input className="form__input" type="text" id="name" placeholder="Name" />
+          </div>
+          <div className="form__group">
+            <label className="form__label" htmlFor="email">Email</label>
+            <input className="form__input" type="text" id="email" placeholder="Email" />
+          </div>
+          <div className="form__group">
+            <label className="form__label" htmlFor="company">Company</label>
+            <input className="form__input" type="text" id="company" placeholder="Company" />
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };
