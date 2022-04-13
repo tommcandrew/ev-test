@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import Skeleton from "react-loading-skeleton";
-import { CLIENTS } from "./queries.js";
+import { CLIENTS, SAVE_CLIENT } from "../../graphql/queries/clients";
 import Modal from "../Modal";
 import {LOADING_ERROR} from '../../constants/notificationMessages'
 import "../../styles/index.css";
@@ -14,6 +14,11 @@ const App = () => {
   const [company, setCompany] = useState(null);
   const { loading, error, data } = useQuery(CLIENTS, {
     onCompleted: () => console.log(data),
+  });
+  const [saveClient] = useMutation(SAVE_CLIENT, {
+    onCompleted: (data) => {
+      console.log('data :>> ', data);
+    },
   });
 
   let tableContent;
@@ -49,10 +54,14 @@ const App = () => {
   };
 
   const handleSave = () => {
-    console.log('name :>> ', name);
-    console.log('email :>> ', email);
-    console.log('company :>> ', company);
     setShowModal(false)
+    saveClient({
+      variables: {
+        name,
+        email,
+        company
+      }
+    })
   };
 
   return (

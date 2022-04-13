@@ -1,8 +1,6 @@
-import {
-    gql,
-  } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-export const CLIENTS = gql`
+const CLIENTS = gql`
   query {
     clients {
       id
@@ -13,3 +11,5 @@ export const CLIENTS = gql`
     }
   }
 `;
+
+export default CLIENTS;
