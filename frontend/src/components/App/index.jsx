@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import Skeleton from "react-loading-skeleton";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import CLIENTS from "../../graphql/queries/clients";
 import CREATE_CLIENT from "../../graphql/mutations/createClient.js";
 import DELETE_CLIENT from "../../graphql/mutations/deleteClient.js";
@@ -22,7 +24,7 @@ const App = () => {
   });
 
   const [createClient] = useMutation(CREATE_CLIENT, {
-    onError: (err) => console.log("err :>> ", err),
+    onError: (err) => toast.error(err.message),
     onCompleted: () => setShowModal(false),
     refetchQueries: [
       {
@@ -192,6 +194,7 @@ const App = () => {
           </div>
         </form>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };
