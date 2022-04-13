@@ -8,6 +8,9 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [company, setCompany] = useState(null);
   const { loading, error, data } = useQuery(CLIENTS, {
     onCompleted: () => console.log(data),
   });
@@ -15,9 +18,9 @@ const App = () => {
   let tableContent;
 
   if (loading) {
-    tableContent = <Skeleton count={5} height={50} />;
+    tableContent = <tr><td colSpan={4}><Skeleton count={5} height={50} /></td></tr>;
   } else if (error) {
-    tableContent = <span>The data could not be loaded.</span>;
+    tableContent = <tr><td colSpan={4} className="clients__error"><span>The data could not be loaded.</span></td></tr>;
   } else {
     tableContent = data.clients.map((client) => {
       const formattedCreatedDate = new Date(
@@ -34,6 +37,23 @@ const App = () => {
     });
   }
 
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  };
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleChangeCompany = (e) => {
+    setCompany(e.target.value);
+  };
+
+  const handleSave = () => {
+    console.log('name :>> ', name);
+    console.log('email :>> ', email);
+    console.log('company :>> ', company);
+    setShowModal(false)
+  };
+
   return (
     <div>
       <header>
@@ -41,7 +61,7 @@ const App = () => {
       </header>
       <div className="clients__container">
         <div className="clients__buttons">
-          <button onClick={() => setShowModal(true)}>New</button>
+          <button className="button" onClick={() => setShowModal(true)}>New</button>
         </div>
         <table className="clients__table">
           <thead>
@@ -58,22 +78,47 @@ const App = () => {
       <Modal
         title="New Client"
         closeModal={() => setShowModal(false)}
-        width="600px"
         isOpen={showModal}
-        pb="40px"
       >
         <form>
           <div className="form__group">
-            <label className="form__label" htmlFor="name">Name</label>
-            <input className="form__input" type="text" id="name" placeholder="Name" />
+            <label className="form__label" htmlFor="name">
+              Name
+            </label>
+            <input
+              className="form__input"
+              type="text"
+              id="name"
+              placeholder="Name"
+              onChange={handleChangeName}
+            />
           </div>
           <div className="form__group">
-            <label className="form__label" htmlFor="email">Email</label>
-            <input className="form__input" type="text" id="email" placeholder="Email" />
+            <label className="form__label" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="form__input"
+              type="text"
+              id="email"
+              placeholder="Email"
+              onChange={handleChangeEmail}
+            />
           </div>
           <div className="form__group">
-            <label className="form__label" htmlFor="company">Company</label>
-            <input className="form__input" type="text" id="company" placeholder="Company" />
+            <label className="form__label" htmlFor="company">
+              Company
+            </label>
+            <input
+              className="form__input"
+              type="text"
+              id="company"
+              placeholder="Company"
+              onChange={handleChangeCompany}
+            />
+          </div>
+          <div className="form__footer">
+            <button className="button" onClick={handleSave} type="button">Save</button>
           </div>
         </form>
       </Modal>
