@@ -3,11 +3,12 @@ import { useQuery, useMutation } from "@apollo/client";
 import Skeleton from "react-loading-skeleton";
 import CLIENTS from "../../graphql/queries/clients";
 import CREATE_CLIENT from "../../graphql/mutations/createClient.js";
+import DELETE_CLIENT from "../../graphql/mutations/deleteClient.js";
 import Modal from "../Modal";
 import { LOADING_ERROR } from "../../constants/notificationMessages";
 import "../../styles/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from "react-icons/fa";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +25,17 @@ const App = () => {
       },
     ],
   });
+  const [deleteClient] = useMutation(DELETE_CLIENT, {
+    refetchQueries: [
+      {
+        query: CLIENTS,
+      },
+    ],
+  });
+
+  const handleDeleteClient = (id) => {
+    deleteClient({ variables: { id } });
+  };
 
   let tableContent;
 
@@ -54,7 +66,15 @@ const App = () => {
           <td>{client.email}</td>
           <td>{client.company}</td>
           <td>{formattedCreatedDate}</td>
-          <td><button aria-label="delete" className="clients__delete"><FaTrashAlt color="white" /></button></td>
+          <td>
+            <button
+              aria-label="delete"
+              className="clients__delete"
+              onClick={() => handleDeleteClient(client.id)}
+            >
+              <FaTrashAlt color="white" />
+            </button>
+          </td>
         </tr>
       );
     });

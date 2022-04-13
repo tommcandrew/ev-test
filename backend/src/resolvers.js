@@ -10,6 +10,12 @@ const resolvers = {
       await client.save();
       return client;
     },
+    deleteClient: async (_, { id }) => {
+      console.log("DELETE CLIENT RESOLVER")
+      console.log('id', id)
+      await Client.deleteOne({ _id: id });
+      return true;
+    },
   },
 };
 
