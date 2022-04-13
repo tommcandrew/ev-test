@@ -1,17 +1,14 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { CLIENTS } from "./queries.js";
-import "../../styles/index.css";
 import Skeleton from 'react-loading-skeleton'
+import "../../styles/index.css";
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const App = () => {
   const { loading, error, data } = useQuery(CLIENTS, {
     onCompleted: () => console.log(data),
   });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
 
   let tableContent;
 
