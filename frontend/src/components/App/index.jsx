@@ -5,7 +5,7 @@ import CLIENTS from "../../graphql/queries/clients";
 import CREATE_CLIENT from "../../graphql/mutations/createClient.js";
 import DELETE_CLIENT from "../../graphql/mutations/deleteClient.js";
 import Modal from "../Modal";
-import { LOADING_ERROR } from "../../constants/notificationMessages";
+import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import "../../styles/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaTrashAlt } from "react-icons/fa";
@@ -42,7 +42,7 @@ const App = () => {
   if (loading) {
     tableContent = (
       <tr>
-        <td colSpan={4}>
+        <td colSpan={5}>
           <Skeleton count={5} height={50} />
         </td>
       </tr>
@@ -50,8 +50,16 @@ const App = () => {
   } else if (error) {
     tableContent = (
       <tr>
-        <td colSpan={4} className="clients__error">
+        <td colSpan={5} className="clients__message">
           <span>{LOADING_ERROR}</span>
+        </td>
+      </tr>
+    );
+  } else if (!data.clients.length) {
+    tableContent = (
+      <tr>
+        <td colSpan={5} className="clients__message">
+          <span>{NO_DATA}</span>
         </td>
       </tr>
     );

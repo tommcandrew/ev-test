@@ -36,6 +36,7 @@ header {
   text-align: left;
   padding: 5px 20px;
   font-weight: normal;
+  width: 20%;
 }
 
 .clients__table td {
@@ -74,11 +75,11 @@ header {
   cursor: pointer;
 }
 
-.clients__error {
+.clients__message {
   text-align: center;
 }
 
-.clients__error span {
+.clients__message span {
   display: inline-block;
   margin-top: 60px;
 }
