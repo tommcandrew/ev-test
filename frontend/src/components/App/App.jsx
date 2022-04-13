@@ -1,7 +1,8 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { CLIENTS } from "./queries.js";
 import Skeleton from 'react-loading-skeleton'
+import { CLIENTS } from "./queries.js";
+import Modal from '../Modal'
 import "../../styles/index.css";
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -38,6 +39,9 @@ const App = () => {
         <div className="clients__title">Client List</div>
       </header>
       <div className="clients__container">
+        <div className="clients__buttons">
+          <button>New</button>
+        </div>
         <table className="clients__table">
           <thead>
             <tr>
@@ -50,6 +54,7 @@ const App = () => {
           <tbody>{tableContent}</tbody>
         </table>
       </div>
+      <Modal />
     </div>
   );
 };
