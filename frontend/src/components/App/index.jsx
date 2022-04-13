@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import Skeleton from "react-loading-skeleton";
 import { CLIENTS } from "./queries.js";
 import Modal from "../Modal";
+import {LOADING_ERROR} from '../../constants/notificationMessages'
 import "../../styles/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -20,7 +21,7 @@ const App = () => {
   if (loading) {
     tableContent = <tr><td colSpan={4}><Skeleton count={5} height={50} /></td></tr>;
   } else if (error) {
-    tableContent = <tr><td colSpan={4} className="clients__error"><span>The data could not be loaded.</span></td></tr>;
+    tableContent = <tr><td colSpan={4} className="clients__error"><span>{LOADING_ERROR}</span></td></tr>;
   } else {
     tableContent = data.clients.map((client) => {
       const formattedCreatedDate = new Date(

@@ -1,0 +1,1 @@
+export const LOADING_ERROR = "The data could not be loaded."
