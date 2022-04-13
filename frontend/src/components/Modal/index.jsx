@@ -2,6 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 
 const Modal = ({ isOpen, closeModal, title, children }) => {
+  ReactModal.setAppElement('#root');
   const customStyles = {
     overlay: {
       position: "absolute",
