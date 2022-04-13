@@ -39,6 +39,14 @@ header {
   width: 20%;
 }
 
+.clients__search {
+  display: flex;
+}
+
+.clients__search label {
+  margin-right: 0.5rem;
+}
+
 .clients__table td {
   padding: 20px;
 }

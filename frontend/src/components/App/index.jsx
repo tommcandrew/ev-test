@@ -15,9 +15,12 @@ const App = () => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [company, setCompany] = useState(null);
+  const [searchText, setSearchText] = useState("");
+
   const { loading, error, data } = useQuery(CLIENTS, {
     onCompleted: () => console.log(data),
   });
+
   const [createClient] = useMutation(CREATE_CLIENT, {
     refetchQueries: [
       {
@@ -64,7 +67,7 @@ const App = () => {
       </tr>
     );
   } else {
-    tableContent = data.clients.map((client) => {
+    tableContent = data.clients.filter(client => [client.name, client.email, client.company].some(val => val.toLowerCase().includes(searchText))).map((client) => {
       const formattedCreatedDate = new Date(
         Number(client.createdAt)
       ).toLocaleDateString("en-UK");
@@ -103,6 +106,10 @@ const App = () => {
     createClient({ variables: { name, email, company } });
   };
 
+  const handleSearch = (e) => {
+    setSearchText(e.target.value)
+  };
+
   return (
     <div>
       <header>
@@ -121,7 +128,12 @@ const App = () => {
               <th>Email</th>
               <th>Company</th>
               <th>Created</th>
-              <th></th>
+              <th>
+                <div className="clients__search">
+                  <label htmlFor="search">Search:</label>
+                  <input id="search" type="text" onChange={handleSearch} />
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>{tableContent}</tbody>
