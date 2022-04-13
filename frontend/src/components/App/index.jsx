@@ -7,7 +7,7 @@ import Modal from "../Modal";
 import { LOADING_ERROR } from "../../constants/notificationMessages";
 import "../../styles/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
-
+import { FaTrashAlt } from 'react-icons/fa';
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
@@ -48,6 +48,7 @@ const App = () => {
           <td>{client.email}</td>
           <td>{client.company}</td>
           <td>{formattedCreatedDate}</td>
+          <td><button aria-label="delete" className="clients__delete"><FaTrashAlt color="white" /></button></td>
         </tr>
       );
     });
