@@ -2,13 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactModal from "react-modal";
 
-const Modal = ({
-  isOpen,
-  closeModal,
-  title,
-  children,
-}) => {
-  ReactModal.setAppElement("#root");
+const Modal = ({ isOpen, closeModal, title, children }) => {
+  if (process.env.NODE_ENV !== "test") ReactModal.setAppElement("#root");
+
   const customStyles = {
     overlay: {
       position: "absolute",
