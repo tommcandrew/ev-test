@@ -49,6 +49,7 @@ header {
 
 .clients__table td {
   padding: 20px;
+  color: #626161;
 }
 
 .clients__buttons {
@@ -81,6 +82,10 @@ header {
   line-height: 1.5;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+
+.button--danger {
+  background-color: #fe635f;
 }
 
 .clients__message {
@@ -129,6 +134,12 @@ header {
   max-height: calc(100vh - 120px) !important;
   overflow: auto;
   padding: 1rem;
+  color: #626161;
+}
+
+.modal__content {
+  padding: 2rem 0;
+  text-align: center;
 }
 
 .form__group {
@@ -160,6 +171,12 @@ header {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+}
+
+.button__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 900px) {

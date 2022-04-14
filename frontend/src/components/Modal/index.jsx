@@ -1,8 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ReactModal from "react-modal";
 
-const Modal = ({ isOpen, closeModal, title, children }) => {
-  ReactModal.setAppElement('#root');
+const Modal = ({
+  isOpen,
+  closeModal,
+  title,
+  children,
+}) => {
+  ReactModal.setAppElement("#root");
   const customStyles = {
     overlay: {
       position: "absolute",
@@ -34,6 +40,16 @@ const Modal = ({ isOpen, closeModal, title, children }) => {
       </div>
     </ReactModal>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool,
+  closeModal: PropTypes.func,
+  title: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default Modal;

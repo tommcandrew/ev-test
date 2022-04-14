@@ -11,6 +11,7 @@ import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import "../../styles/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaTrashAlt } from "react-icons/fa";
+import ConfirmActionButton from "../ConfirmActionButton";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
@@ -39,10 +40,6 @@ const App = () => {
       },
     ],
   });
-
-  const handleDeleteClient = (id) => {
-    deleteClient({ variables: { id } });
-  };
 
   let tableContent;
 
@@ -88,13 +85,15 @@ const App = () => {
             <td>{client.company}</td>
             <td>{formattedCreatedDate}</td>
             <td>
-              <button
-                aria-label="delete"
-                className="clients__delete"
-                onClick={() => handleDeleteClient(client.id)}
+              <ConfirmActionButton
+                onConfirm={() => deleteClient({ variables: { id: client.id } })}
+                modalTitle="Delete Client"
+                modalText={`Are you sure you want to delete ${client.name}?`}
+                buttonClassName="clients__delete"
+                modalButtonText="Delete"
               >
                 <FaTrashAlt color="white" />
-              </button>
+              </ConfirmActionButton>
             </td>
           </tr>
         );
