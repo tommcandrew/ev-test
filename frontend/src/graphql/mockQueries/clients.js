@@ -1,4 +1,4 @@
-import { CLIENTS } from "./queries/clients.js";
+import CLIENTS from "../queries/clients";
 import { MOCK_CLIENTS } from "../../constants/mockData.js";
 export function clientsMock() {
   return {
