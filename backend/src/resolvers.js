@@ -8,15 +8,16 @@ const resolvers = {
     createClient: async (_, { name, email, company }) => {
       const existingClient = await Client.findOne({ email });
       if (existingClient) {
-        throw new Error("A client with this email already exists.")
+        throw new Error("A client with this email already exists.");
       }
       const client = new Client({ name, email, company });
       await client.save();
       return client;
     },
     deleteClient: async (_, { id }) => {
-      await Client.deleteOne({ _id: id });
-      return true;
+      const client = await Client.findById(id);
+      await client.delete()
+      return client;
     },
   },
 };
