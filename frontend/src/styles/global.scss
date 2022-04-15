@@ -26,10 +26,10 @@
   }
 }
 
-.btn--blue {
+.btn--primary {
   @include button();
 }
 
-.btn--red {
+.btn--danger {
   @include button($red);
 }

@@ -30,7 +30,7 @@ const CreateClient = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <button className="btn--blue" onClick={() => setShowModal(true)}>
+        <button className="btn--primary" onClick={() => setShowModal(true)}>
           New
         </button>
       </div>
