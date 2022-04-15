@@ -52,7 +52,7 @@ const NewClientForm = ({ handleSaveClient }) => {
         />
       </div>
       <div className={styles.footer}>
-        <button className="button" onClick={() => handleSaveClient({name, email, company})} type="button">
+        <button className="btn--blue" onClick={() => handleSaveClient({name, email, company})} type="button">
           Save
         </button>
       </div>

@@ -34,7 +34,7 @@ const ConfirmActionButton = ({
       >
         <p className={styles.modalText}>{modalText}</p>
         <div className={styles.button__wrapper}>
-          <button className="buttonDanger" onClick={handleConfirmClick}>
+          <button className="btn--red" onClick={handleConfirmClick}>
             {modalButtonText}
           </button>
         </div>
