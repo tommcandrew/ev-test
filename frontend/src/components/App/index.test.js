@@ -1,4 +1,5 @@
 import React from "react";
+import wait from 'waait'
 import { MockedProvider } from "@apollo/client/testing";
 import { render } from "@testing-library/react";
 import App from ".";
@@ -26,8 +27,8 @@ describe("App", () => {
   });
   it("should render New button", async () => {
     const { getByText } = render(createComponent());
-    const headerTitle = getByText("New");
-    expect(headerTitle).toBeDefined();
+    const newClientButton = getByText("New");
+    expect(newClientButton).toBeDefined();
   });
   it("should display client list with mock data", async () => {
     const { findByText } = render(createComponent());
