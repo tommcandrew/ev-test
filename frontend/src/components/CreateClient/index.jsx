@@ -5,7 +5,7 @@ import CREATE_CLIENT from "../../graphql/mutations/createClient.js";
 import CLIENTS from "../../graphql/queries/clients";
 import Modal from "../Modal";
 import NewClientForm from "../NewClientForm";
-import styles from './index.module.scss'
+import styles from "./index.module.scss";
 
 const CreateClient = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +14,7 @@ const CreateClient = () => {
     onError: (err) => toast.error(err.message),
     onCompleted: () => {
       setShowModal(false);
-      toast.success('Client created')
+      toast.success("Client created");
     },
     refetchQueries: [
       {
@@ -30,7 +30,10 @@ const CreateClient = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <button className={`btn--primary ${styles.newClientButton}`} onClick={() => setShowModal(true)}>
+        <button
+          className={`btn--primary ${styles.newClientButton}`}
+          onClick={() => setShowModal(true)}
+        >
           New
         </button>
       </div>
