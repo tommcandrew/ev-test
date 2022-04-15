@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
-import CREATE_CLIENT from "../../graphql/mutations/createClient.js";
+import CREATE_CLIENT from "../../graphql/mutations/createClient";
 import CLIENTS from "../../graphql/queries/clients";
 import Modal from "../Modal";
 import NewClientForm from "../NewClientForm";
 import styles from "./index.module.scss";
 
-const CreateClient = () => {
+function CreateClient() {
   const [showModal, setShowModal] = useState(false);
 
   const [createClient] = useMutation(CREATE_CLIENT, {
@@ -31,6 +31,7 @@ const CreateClient = () => {
     <>
       <div className={styles.wrapper}>
         <button
+          type="button"
           className={`btn--primary ${styles.newClientButton}`}
           onClick={() => setShowModal(true)}
         >
@@ -50,6 +51,6 @@ const CreateClient = () => {
       </Modal>
     </>
   );
-};
+}
 
 export default CreateClient;

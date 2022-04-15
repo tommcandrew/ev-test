@@ -9,7 +9,7 @@ describe("NewClientForm", () => {
       handleSaveClient: jest.fn(),
     };
   });
-  function createComponent(p = props) {
+  function createComponent() {
     return <NewClientForm {...props} />;
   }
   it("should render without error", () => {

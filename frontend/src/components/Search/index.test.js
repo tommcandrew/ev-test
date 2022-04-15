@@ -9,7 +9,7 @@ describe("Search", () => {
       onChange: jest.fn(),
     };
   });
-  function createComponent(p = props) {
+  function createComponent() {
     return <Search {...props} />;
   }
   it("should render without error", () => {

@@ -1,6 +1,6 @@
-import Client from "./models/Client.js";
 import mongoose from "mongoose";
-import resolvers from "./resolvers.js";
+import Client from "./models/Client";
+import resolvers from "./resolvers";
 
 describe("resolvers", () => {
   describe("queries", () => {

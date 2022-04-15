@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { MockedProvider } from "@apollo/client/testing";
 import { render, fireEvent, act } from "@testing-library/react";
 import CreateClient from ".";
-import { createClientMock } from "../../graphql/mockMutations/createClient.js";
+import { createClientMock } from "../../graphql/mockMutations/createClient";
 
 describe("CreateClient", () => {
   let mocks;
