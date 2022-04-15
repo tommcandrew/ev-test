@@ -1,12 +1,9 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .layout {
   position: relative;
   display: flex;
   flex-direction: column;
-  div:last-child {
-    border-radius: 0 0 4px 4px;
-  }
 }
 
 .body {
@@ -35,4 +32,33 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
+}
+
+.content {
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  right: auto;
+  bottom: auto;
+  width: 30%;
+  background-color: white;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  @media only screen and (max-width: 900px) {
+    top: 10%;
+    left: 5%;
+    right: auto;
+    bottom: auto;
+    width: 90%;
+  }
+}
+
+.overlay {
+  position: fixed;
+  background-color: #00507699;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
