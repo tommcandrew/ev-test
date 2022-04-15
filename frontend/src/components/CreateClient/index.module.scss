@@ -2,3 +2,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.newClientButton {
+  @media only screen and (max-width: 900px) {
+    margin-right: 1rem;
+  }
+}
