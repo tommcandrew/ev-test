@@ -12,7 +12,10 @@ const CreateClient = () => {
 
   const [createClient] = useMutation(CREATE_CLIENT, {
     onError: (err) => toast.error(err.message),
-    onCompleted: () => setShowModal(false),
+    onCompleted: () => {
+      setShowModal(false);
+      toast.success('Client created')
+    },
     refetchQueries: [
       {
         query: CLIENTS,
