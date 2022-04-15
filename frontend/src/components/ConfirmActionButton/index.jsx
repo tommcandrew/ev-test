@@ -51,3 +51,9 @@ const ConfirmActionButton = ({
 };
 
 export default ConfirmActionButton;
+
+ConfirmActionButton.defaultProps = {
+  modalText: "Are you sure you want to delete?",
+  modalButtonText: "Confirm",
+  buttonClassName: "btn--danger",
+}
