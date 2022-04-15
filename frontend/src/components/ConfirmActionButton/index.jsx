@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../Modal";
+import styles from './index.module.scss';
 
 const ConfirmActionButton = ({
   onConfirm,
@@ -30,9 +31,9 @@ const ConfirmActionButton = ({
         closeModal={() => setShowModal(false)}
         isOpen={showModal}
       >
-        <div className="modal__content">{modalText}</div>
-        <div className="button__wrapper">
-          <button className="button button--danger" onClick={handleConfirmClick}>
+        <p className={styles.text}>{modalText}</p>
+        <div className={styles.button__wrapper}>
+          <button className="buttonDanger" onClick={handleConfirmClick}>
             {modalButtonText}
           </button>
         </div>

@@ -11,13 +11,11 @@ import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
+import NewClientForm from "../NewClientForm";
 import styles from "./index.module.scss";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
-  const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [company, setCompany] = useState(null);
   const [searchText, setSearchText] = useState("");
 
   const { loading, error, data } = useQuery(CLIENTS, {
@@ -100,22 +98,12 @@ const App = () => {
       });
   }
 
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handleChangeCompany = (e) => {
-    setCompany(e.target.value);
-  };
-
-  const handleSave = () => {
-    createClient({ variables: { name, email, company } });
-  };
-
   const handleSearch = (e) => {
     setSearchText(e.target.value);
+  };
+
+  const handleSaveClient = ({ name, email, company }) => {
+    createClient({ variables: { name, email, company } });
   };
 
   return (
@@ -152,46 +140,9 @@ const App = () => {
         closeModal={() => setShowModal(false)}
         isOpen={showModal}
       >
-        <form>
-          <div className={styles.group}>
-            <label className={styles.label} htmlFor="name">
-              Name
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="name"
-              onChange={handleChangeName}
-            />
-          </div>
-          <div className={styles.group}>
-            <label className={styles.label} htmlFor="email">
-              Email
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="email"
-              onChange={handleChangeEmail}
-            />
-          </div>
-          <div className={styles.group}>
-            <label className={styles.label} htmlFor="company">
-              Company
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="company"
-              onChange={handleChangeCompany}
-            />
-          </div>
-          <div className={styles.footer}>
-            <button className="button" onClick={handleSave} type="button">
-              Save
-            </button>
-          </div>
-        </form>
+        <NewClientForm
+          handleSaveClient={({ name, email, company }) => handleSaveClient({name, email, company})}
+        />
       </Modal>
       <ToastContainer />
     </div>
