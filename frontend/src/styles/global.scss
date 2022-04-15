@@ -24,6 +24,12 @@
   &:active {
     background: darken($bgColor, 25%);
   }
+  &:disabled {
+    background-color: $grey--light;
+    color: $text;
+    border: 1px solid $grey--medium;
+    cursor: default
+  }
 }
 
 .btn--primary {
