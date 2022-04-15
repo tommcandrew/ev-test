@@ -7,6 +7,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
+import Search from "../Search";
 import styles from "./index.module.scss";
 
 const ClientList = () => {
@@ -87,25 +88,23 @@ const ClientList = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Company</th>
-          <th>Created</th>
-          <th>
-            <div className={styles.search}>
-              <label htmlFor="search">Search:</label>
-              <input id="search" type="text" onChange={handleSearch} />
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>{tableContent}</tbody>
-    </table>
-    </div>
+    <>
+      <Search onChange={handleSearch} />
+      <div className={styles.tableResponsive}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Company</th>
+              <th>Created</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>{tableContent}</tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

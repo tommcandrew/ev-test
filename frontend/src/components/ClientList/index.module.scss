@@ -1,6 +1,6 @@
 @import "../../styles/variables.scss";
 
-.wrapper {
+.tableResponsive {
   overflow-x: auto;
 }
 
@@ -8,6 +8,9 @@
   border-collapse: separate;
   border-spacing: 0 1rem;
   width: 100%;
+  @media only screen and (max-width: 900px) {
+    padding: 1rem;
+  }
   th {
     border-bottom: 1px solid $grey--dark;
     text-align: left;
@@ -36,13 +39,6 @@
   justify-content: center;
   &:hover {
     background: $red--darker;
-  }
-}
-
-.search {
-  display: flex;
-  label {
-    margin-right: 0.5rem;
   }
 }
 
