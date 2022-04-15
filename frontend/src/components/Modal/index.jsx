@@ -12,6 +12,7 @@ const Modal = ({ isOpen, closeModal, title, children }) => {
       onRequestClose={closeModal}
       className={styles.content}
       overlayClassName={styles.overlay}
+      ariaHideApp={process.env.NODE_ENV !== "test"}
     >
       <div className={styles.layout}>
         <div className={styles.header}>
