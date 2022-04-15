@@ -8,6 +8,7 @@ import DELETE_CLIENT from "../../graphql/mutations/deleteClient.js";
 import Modal from "../Modal";
 import NewClientForm from "../NewClientForm";
 import ClientList from "../ClientList";
+import Header from "../Header";
 import styles from "./index.module.scss";
 
 const App = () => {
@@ -45,9 +46,7 @@ const App = () => {
 
   return (
     <div>
-      <header>
-        <div className={styles.title}>Client List</div>
-      </header>
+      <Header />
       <div className={styles.container}>
         <div className={styles.buttons}>
           <button className="button" onClick={() => setShowModal(true)}>
