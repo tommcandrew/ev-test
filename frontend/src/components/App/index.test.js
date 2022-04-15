@@ -16,10 +16,20 @@ describe("App", () => {
       </MockedProvider>
     );
   }
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     render(createComponent());
   });
-  it("displays list of clients and their data", async () => {
+  it("should render Header", async () => {
+    const { getByText } = render(createComponent());
+    const headerTitle = getByText("Client List");
+    expect(headerTitle).toBeDefined();
+  });
+  it("should render New button", async () => {
+    const { getByText } = render(createComponent());
+    const headerTitle = getByText("New");
+    expect(headerTitle).toBeDefined();
+  });
+  it("should display client list with mock data", async () => {
     const { findByText } = render(createComponent());
     const client1Name = await findByText("Bob");
     expect(client1Name).toBeTruthy();
