@@ -56,6 +56,7 @@ const NewClientForm = ({ handleSaveClient }) => {
           className="btn--primary"
           onClick={() => handleSaveClient({ name, email, company })}
           type="button"
+          disabled={!name || !email || !company}
         >
           Save
         </button>
