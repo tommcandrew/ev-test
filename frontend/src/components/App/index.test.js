@@ -16,7 +16,7 @@ describe("App", () => {
       </MockedProvider>
     );
   }
-  it("should render correctly", () => {
+  it("should render without error", () => {
     render(createComponent());
   });
   it("should render Header", async () => {

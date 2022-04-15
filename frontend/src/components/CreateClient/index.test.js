@@ -23,7 +23,7 @@ describe("CreateClient", () => {
       </MockedProvider>
     );
   }
-  it("should render correctly", () => {
+  it("should render without error", () => {
     render(createComponent());
   });
   it("should render New button", () => {

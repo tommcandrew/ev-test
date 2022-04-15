@@ -6,7 +6,7 @@ describe("Header", () => {
   function createComponent() {
     return <Header />;
   }
-  it("should render correctly", () => {
+  it("should render without error", () => {
     render(createComponent());
   });
   it("should render title text", async () => {

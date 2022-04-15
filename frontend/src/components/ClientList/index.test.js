@@ -16,7 +16,7 @@ describe("ClientList", () => {
       </MockedProvider>
     );
   }
-  it("should render correctly", () => {
+  it("should render without error", () => {
     render(createComponent());
   });
   it("should render search component", async () => {
