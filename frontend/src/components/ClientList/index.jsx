@@ -3,18 +3,23 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import DELETE_CLIENT from "../../graphql/mutations/deleteClient.js";
 import CLIENTS from "../../graphql/queries/clients";
-import { useMutation } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
 import styles from "./index.module.scss";
 
-const ClientList = ({ loading, error, data }) => {
+const ClientList = () => {
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);
   };
+
+  const { loading, error, data } = useQuery(CLIENTS, {
+    onCompleted: () => console.log(data),
+  });
+
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     refetchQueries: [
       {
