@@ -17,13 +17,11 @@ const ClientList = () => {
     setSearchText(e.target.value);
   };
 
-  const { loading, error, data } = useQuery(CLIENTS, {
-    onCompleted: () => console.log(data),
-  });
+  const { loading, error, data } = useQuery(CLIENTS);
 
   const [deleteClient] = useMutation(DELETE_CLIENT, {
     onCompleted: () => {
-      toast.success('Client deleted')
+      toast.success("Client deleted");
     },
     onError: (err) => toast.error(err.message),
     refetchQueries: [
