@@ -32,7 +32,7 @@ const ConfirmActionButton = ({
         closeModal={() => setShowModal(false)}
         isOpen={showModal}
       >
-        <p className={styles.text}>{modalText}</p>
+        <p className={styles.modalText}>{modalText}</p>
         <div className={styles.button__wrapper}>
           <button className="buttonDanger" onClick={handleConfirmClick}>
             {modalButtonText}

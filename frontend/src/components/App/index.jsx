@@ -8,14 +8,14 @@ import styles from "./index.module.scss";
 
 const App = () => {
   return (
-    <div>
+    <>
       <Header />
-      <div className={styles.container}>
+      <div className={styles.content}>
         <CreateClient />
         <ClientList />
       </div>
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

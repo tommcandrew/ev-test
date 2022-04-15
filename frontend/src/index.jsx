@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./components/App";
-import "./styles/index.module.scss";
+import "./styles/styles.scss";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
