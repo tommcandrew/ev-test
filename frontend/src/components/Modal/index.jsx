@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactModal from "react-modal";
-import styles from './index.module.css'
+import styles from './index.module.scss'
 
 const Modal = ({ isOpen, closeModal, title, children }) => {
   if (process.env.NODE_ENV !== "test") ReactModal.setAppElement("#root");

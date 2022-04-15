@@ -11,7 +11,7 @@ import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
-import styles from "./index.module.css";
+import styles from "./index.module.scss";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
