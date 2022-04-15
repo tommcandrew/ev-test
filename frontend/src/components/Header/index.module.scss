@@ -3,6 +3,8 @@
 header {
   background-color: $headerBg;
   padding: 10px;
+  position: sticky;
+  top: 0;
   .title {
     text-align: center;
     color: white;
