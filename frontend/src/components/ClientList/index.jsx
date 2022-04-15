@@ -22,6 +22,10 @@ const ClientList = () => {
   });
 
   const [deleteClient] = useMutation(DELETE_CLIENT, {
+    onCompleted: () => {
+      toast.success('Client deleted')
+    },
+    onError: (err) => toast.error(err.message),
     refetchQueries: [
       {
         query: CLIENTS,
