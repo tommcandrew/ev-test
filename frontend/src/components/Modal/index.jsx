@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactModal from "react-modal";
+import styles from './index.module.css'
 
 const Modal = ({ isOpen, closeModal, title, children }) => {
   if (process.env.NODE_ENV !== "test") ReactModal.setAppElement("#root");
@@ -25,14 +26,14 @@ const Modal = ({ isOpen, closeModal, title, children }) => {
       style={customStyles}
       onRequestClose={closeModal}
     >
-      <div className="modal__layout">
-        <div className="modal__header">
-          <div className="modal__title">{title}</div>
-          <button className="modal__close" onClick={closeModal}>
+      <div className={styles.layout}>
+        <div className={styles.header}>
+          <div className={styles.title}>{title}</div>
+          <button className={styles.close} onClick={closeModal}>
             ×
           </button>
         </div>
-        <div className="modal__body">{children}</div>
+        <div className={styles.body}>{children}</div>
       </div>
     </ReactModal>
   );

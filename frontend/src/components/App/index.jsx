@@ -8,10 +8,10 @@ import CREATE_CLIENT from "../../graphql/mutations/createClient.js";
 import DELETE_CLIENT from "../../graphql/mutations/deleteClient.js";
 import Modal from "../Modal";
 import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
-import "../../styles/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
+import styles from "./index.module.css";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
@@ -54,7 +54,7 @@ const App = () => {
   } else if (error) {
     tableContent = (
       <tr>
-        <td colSpan={5} className="clients__message">
+        <td colSpan={5} className={styles.message}>
           <span>{LOADING_ERROR}</span>
         </td>
       </tr>
@@ -62,7 +62,7 @@ const App = () => {
   } else if (!data.clients.length) {
     tableContent = (
       <tr>
-        <td colSpan={5} className="clients__message">
+        <td colSpan={5} className={styles.message}>
           <span>{NO_DATA}</span>
         </td>
       </tr>
@@ -79,7 +79,7 @@ const App = () => {
           Number(client.createdAt)
         ).toLocaleDateString("en-UK");
         return (
-          <tr key={client.email} className="clients__row">
+          <tr key={client.email} className={styles.row}>
             <td>{client.name}</td>
             <td>{client.email}</td>
             <td>{client.company}</td>
@@ -89,7 +89,7 @@ const App = () => {
                 onConfirm={() => deleteClient({ variables: { id: client.id } })}
                 modalTitle="Delete Client"
                 modalText={`Are you sure you want to delete ${client.name}?`}
-                buttonClassName="clients__delete"
+                buttonClassName={styles.delete}
                 modalButtonText="Delete"
               >
                 <FaTrashAlt color="white" />
@@ -121,15 +121,15 @@ const App = () => {
   return (
     <div>
       <header>
-        <div className="clients__title">Client List</div>
+        <div className={styles.title}>Client List</div>
       </header>
-      <div className="clients__container">
-        <div className="clients__buttons">
+      <div className={styles.container}>
+        <div className={styles.buttons}>
           <button className="button" onClick={() => setShowModal(true)}>
             New
           </button>
         </div>
-        <table className="clients__table">
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>Name</th>
@@ -137,7 +137,7 @@ const App = () => {
               <th>Company</th>
               <th>Created</th>
               <th>
-                <div className="clients__search">
+                <div className={styles.search}>
                   <label htmlFor="search">Search:</label>
                   <input id="search" type="text" onChange={handleSearch} />
                 </div>
@@ -153,40 +153,40 @@ const App = () => {
         isOpen={showModal}
       >
         <form>
-          <div className="form__group">
-            <label className="form__label" htmlFor="name">
+          <div className={styles.group}>
+            <label className={styles.label} htmlFor="name">
               Name
             </label>
             <input
-              className="form__input"
+              className={styles.input}
               type="text"
               id="name"
               onChange={handleChangeName}
             />
           </div>
-          <div className="form__group">
-            <label className="form__label" htmlFor="email">
+          <div className={styles.group}>
+            <label className={styles.label} htmlFor="email">
               Email
             </label>
             <input
-              className="form__input"
+              className={styles.input}
               type="text"
               id="email"
               onChange={handleChangeEmail}
             />
           </div>
-          <div className="form__group">
-            <label className="form__label" htmlFor="company">
+          <div className={styles.group}>
+            <label className={styles.label} htmlFor="company">
               Company
             </label>
             <input
-              className="form__input"
+              className={styles.input}
               type="text"
               id="company"
               onChange={handleChangeCompany}
             />
           </div>
-          <div className="form__footer">
+          <div className={styles.footer}>
             <button className="button" onClick={handleSave} type="button">
               Save
             </button>

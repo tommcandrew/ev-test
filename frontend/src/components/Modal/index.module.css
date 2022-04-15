@@ -1,0 +1,45 @@
+.layout {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .layout div:last-child {
+    border-radius: 0 0 4px 4px;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  
+  .close {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+  
+  .body {
+    max-height: calc(100vh - 120px) !important;
+    overflow: auto;
+    padding: 1rem;
+    color: #626161;
+  }
+  
+  .content {
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
