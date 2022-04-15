@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./components/App";
 import 'normalize.css/normalize.css';
-import "./styles/styles.scss";
+import "./styles/global.scss";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
