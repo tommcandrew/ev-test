@@ -87,7 +87,8 @@ const ClientList = () => {
   }
 
   return (
-    <table className={styles.table}>
+    <div className={styles.wrapper}>
+      <table className={styles.table}>
       <thead>
         <tr>
           <th>Name</th>
@@ -104,6 +105,7 @@ const ClientList = () => {
       </thead>
       <tbody>{tableContent}</tbody>
     </table>
+    </div>
   );
 };
 
