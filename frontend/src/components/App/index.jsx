@@ -14,7 +14,7 @@ const App = () => {
         <CreateClient />
         <ClientList />
       </div>
-      <ToastContainer hideProgressBar position="top-center" autoClose={1000} />
+      <ToastContainer hideProgressBar position="top-center" autoClose={1500} />
     </>
   );
 };
