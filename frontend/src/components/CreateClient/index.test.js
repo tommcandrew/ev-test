@@ -53,8 +53,8 @@ describe("CreateClient", () => {
     const modalTitle = queryByText("New Client");
     expect(modalTitle).toBeNull();
   });
-  it("should show success toast when client created", async () => {
-    const { getByText, getByLabelText } = render(createComponent());
+  it("should show success toast when client created and close modal", async () => {
+    const { getByText, getByLabelText, queryByText } = render(createComponent());
     const newClientButton = getByText("New");
     act(() => {
       fireEvent.click(newClientButton);
@@ -73,5 +73,7 @@ describe("CreateClient", () => {
     });
     await wait(30);
     expect(toastSpy).toHaveBeenCalledWith("Client created");
+    const modalTitle = queryByText("New Client");
+    expect(modalTitle).toBeNull();
   });
 });
