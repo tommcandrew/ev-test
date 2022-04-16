@@ -10,6 +10,7 @@ const ConfirmActionButton = ({
   modalButtonText,
   buttonClassName,
   children,
+  ariaLabel
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -20,7 +21,7 @@ const ConfirmActionButton = ({
 
   const renderButton = () => {
     return (
-      <button className={buttonClassName} onClick={() => setShowModal(true)}>
+      <button className={buttonClassName} onClick={() => setShowModal(true)} aria-label={ariaLabel}>
         {children}
       </button>
     );
@@ -35,7 +36,7 @@ const ConfirmActionButton = ({
       >
         <p className={styles.modalText}>{modalText}</p>
         <div className={styles.button__wrapper}>
-          <button className="btn--danger" onClick={handleConfirmClick}>
+          <button className="btn--danger" onClick={handleConfirmClick} aria-label="confirm">
             {modalButtonText}
           </button>
         </div>
@@ -61,6 +62,7 @@ ConfirmActionButton.defaultProps = {
   modalText: "Are you sure you want to delete?",
   modalButtonText: "Confirm",
   buttonClassName: "btn--danger",
+  ariaLabel: 'delete'
 };
 
 export default ConfirmActionButton;

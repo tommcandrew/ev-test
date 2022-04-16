@@ -17,7 +17,7 @@ const Modal = ({ isOpen, closeModal, title, children }) => {
       <div className={styles.layout}>
         <div className={styles.header}>
           <div className={styles.title}>{title}</div>
-          <button className={styles.close} onClick={closeModal}>
+          <button className={styles.close} onClick={closeModal} aria-label="close">
             ×
           </button>
         </div>
