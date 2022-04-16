@@ -1,4 +1,4 @@
-export const MOCK_CLIENTS = [
+const MOCK_CLIENTS = [
   {
     id: "1",
     name: "Bob",
@@ -21,3 +21,5 @@ export const MOCK_CLIENTS = [
     createdAt: "1642795637494",
   },
 ];
+
+export default MOCK_CLIENTS;
