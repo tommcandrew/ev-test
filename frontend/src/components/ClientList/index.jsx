@@ -5,11 +5,11 @@ import "react-loading-skeleton/dist/skeleton.css";
 import DELETE_CLIENT from "../../graphql/mutations/deleteClient.js";
 import CLIENTS from "../../graphql/queries/clients";
 import { useQuery, useMutation } from "@apollo/client";
-import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
 import Search from "../Search";
 import { formatUnixTimestamp } from "../../utils/dateUtils";
+import TABLE_NOTIFICATIONS, { getTableNotificationText } from "../../enums/tableNotifications";
 import styles from "./index.module.scss";
 
 const ClientList = () => {
@@ -32,61 +32,70 @@ const ClientList = () => {
       },
     ],
   });
-  let tableContent;
 
-  if (loading) {
-    tableContent = (
+  const getFilteredClients = (clients) => {
+    if (searchText) {
+      return clients.filter((client) =>
+        [client.name, client.email, client.company].some((val) =>
+          val.toLowerCase().includes(searchText)
+        )
+      );
+    }
+    return clients;
+  };
+
+  const getLoadingSkeleton = () => {
+    return (
       <tr>
         <td colSpan={5}>
           <Skeleton count={5} height={50} />
         </td>
       </tr>
     );
+  };
+
+  const getTableNotification = (notificationCode) => {
+    return (
+      <tr>
+        <td colSpan={5} className={styles.message}>
+          <span>{getTableNotificationText(notificationCode)}</span>
+        </td>
+      </tr>
+    );
+  };
+
+  let tableContent;
+
+  if (loading) {
+    tableContent = getLoadingSkeleton();
   } else if (error) {
-    tableContent = (
-      <tr>
-        <td colSpan={5} className={styles.message}>
-          <span>{LOADING_ERROR}</span>
-        </td>
-      </tr>
-    );
+    tableContent = getTableNotification(TABLE_NOTIFICATIONS.LOADING_ERROR);
   } else if (!data.clients.length) {
-    tableContent = (
-      <tr>
-        <td colSpan={5} className={styles.message}>
-          <span>{NO_DATA}</span>
-        </td>
-      </tr>
-    );
+    tableContent = getTableNotification(TABLE_NOTIFICATIONS.NO_DATA);
   } else {
-    tableContent = data.clients
-      .filter((client) =>
-        [client.name, client.email, client.company].some((val) =>
-          val.toLowerCase().includes(searchText)
-        )
-      )
-      .map((client) => {
-        const formattedCreatedDate = formatUnixTimestamp(client.createdAt);
-        return (
-          <tr key={client.email} className={styles.row}>
-            <td>{client.name}</td>
-            <td>{client.email}</td>
-            <td>{client.company}</td>
-            <td>{formattedCreatedDate}</td>
-            <td>
-              <ConfirmActionButton
-                onConfirm={() => deleteClient({ variables: { id: client.id } })}
-                modalTitle="Delete Client"
-                modalText={`Are you sure you want to delete ${client.name}?`}
-                buttonClassName={styles.delete}
-                modalButtonText="Delete"
-              >
-                <FaTrashAlt color="white" />
-              </ConfirmActionButton>
-            </td>
-          </tr>
-        );
-      });
+    const filteredClients = getFilteredClients(data.clients);
+    tableContent = filteredClients.map((client) => {
+      const formattedCreatedAtDate = formatUnixTimestamp(client.createdAt);
+      return (
+        <tr key={client.email} className={styles.row}>
+          <td>{client.name}</td>
+          <td>{client.email}</td>
+          <td>{client.company}</td>
+          <td>{formattedCreatedAtDate}</td>
+          <td>
+            <ConfirmActionButton
+              onConfirm={() => deleteClient({ variables: { id: client.id } })}
+              modalTitle="Delete Client"
+              modalText={`Are you sure you want to delete ${client.name}?`}
+              buttonClassName={styles.delete}
+              modalButtonText="Delete"
+            >
+              <FaTrashAlt color="white" />
+            </ConfirmActionButton>
+          </td>
+        </tr>
+      );
+    });
   }
 
   return (
