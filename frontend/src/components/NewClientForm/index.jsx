@@ -66,7 +66,7 @@ const NewClientForm = ({ handleSaveClient }) => {
   );
 };
 
-NewClientForm.PropTypes = {
+NewClientForm.propTypes = {
   handleSaveClient: PropTypes.func,
 };
 

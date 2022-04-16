@@ -11,7 +11,7 @@ const Search = ({ onChange }) => {
   );
 };
 
-Search.PropTypes = {
+Search.propTypes = {
   onChange: PropTypes.func,
 };
 

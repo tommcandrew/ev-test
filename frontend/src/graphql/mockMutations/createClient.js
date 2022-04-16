@@ -15,7 +15,9 @@ export const createClientMock = (
   },
   result: {
     data: {
-      id: "1",
+      createClient: {
+        id: "1",
+      }
     },
   },
 });
