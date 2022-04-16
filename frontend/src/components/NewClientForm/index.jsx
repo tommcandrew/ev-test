@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 
 const NewClientForm = ({ handleSaveClient }) => {
@@ -63,6 +64,10 @@ const NewClientForm = ({ handleSaveClient }) => {
       </div>
     </form>
   );
+};
+
+NewClientForm.PropTypes = {
+  handleSaveClient: PropTypes.func,
 };
 
 export default NewClientForm;

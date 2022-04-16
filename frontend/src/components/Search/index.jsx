@@ -1,5 +1,6 @@
 import React from "react";
-import styles from './index.module.scss'
+import PropTypes from "prop-types";
+import styles from "./index.module.scss";
 
 const Search = ({ onChange }) => {
   return (
@@ -8,6 +9,10 @@ const Search = ({ onChange }) => {
       <input id="search" type="text" onChange={onChange} />
     </div>
   );
+};
+
+Search.PropTypes = {
+  onChange: PropTypes.func,
 };
 
 export default Search;

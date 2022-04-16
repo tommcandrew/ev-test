@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Modal from "../Modal";
 import styles from './index.module.scss';
 
@@ -50,10 +51,17 @@ const ConfirmActionButton = ({
   );
 };
 
-export default ConfirmActionButton;
+ConfirmActionButton.propTypes = {
+  modalText: PropTypes.string,
+  modalButtonText: PropTypes.string,
+  buttonClassName: PropTypes.string,
+};
 
 ConfirmActionButton.defaultProps = {
   modalText: "Are you sure you want to delete?",
   modalButtonText: "Confirm",
   buttonClassName: "btn--danger",
 }
+
+export default ConfirmActionButton;
+
