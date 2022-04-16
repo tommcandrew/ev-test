@@ -16,7 +16,7 @@ const resolvers = {
     },
     deleteClient: async (_, { id }) => {
       const client = await Client.findById(id);
-      await client.delete()
+      await client.delete();
       return client;
     },
   },

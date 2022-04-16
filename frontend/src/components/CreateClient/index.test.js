@@ -8,14 +8,14 @@ import { createClientMock } from "../../graphql/mockMutations/createClient";
 
 describe("CreateClient", () => {
   let mocks;
-  let toastSpy
+  let toastSpy;
   beforeEach(() => {
     toastSpy = jest.spyOn(toast, "success");
     mocks = [createClientMock()];
   });
   afterEach(() => {
     toastSpy.mockRestore();
-  })
+  });
   function createComponent() {
     return (
       <MockedProvider mocks={mocks}>
@@ -72,8 +72,6 @@ describe("CreateClient", () => {
       fireEvent.click(saveUserButton);
     });
     await wait(30);
-    expect(toastSpy).toHaveBeenCalledWith(
-      "Client created"
-    );
+    expect(toastSpy).toHaveBeenCalledWith("Client created");
   });
 });

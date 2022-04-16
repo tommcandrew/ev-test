@@ -43,7 +43,7 @@ describe("<ConfirmActionButton />", () => {
     act(() => {
       fireEvent.click(confirmButton);
     });
-    expect(props.onConfirm).toHaveBeenCalled()
+    expect(props.onConfirm).toHaveBeenCalled();
     const modalTitle = queryByText("Delete client");
     expect(modalTitle).toBeNull();
   });

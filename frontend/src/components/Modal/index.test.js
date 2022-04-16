@@ -13,7 +13,6 @@ describe("<Modal />", () => {
   }
   it("should render without error", () => {
     render(createComponent());
-
   });
   it("should not show modal when isOpen is false", async () => {
     const { queryByText } = render(createComponent());

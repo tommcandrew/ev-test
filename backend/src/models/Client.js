@@ -6,7 +6,7 @@ const clientSchema = new mongoose.Schema({
   company: String,
 });
 
-clientSchema.set('timestamps', true)
+clientSchema.set("timestamps", true);
 
 const Client = mongoose.model("Client", clientSchema);
 

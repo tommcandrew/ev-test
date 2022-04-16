@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "../Modal";
-import styles from './index.module.scss';
+import styles from "./index.module.scss";
 
 const ConfirmActionButton = ({
   onConfirm,
@@ -12,7 +12,7 @@ const ConfirmActionButton = ({
   children,
 }) => {
   const [showModal, setShowModal] = useState(false);
-  
+
   const handleConfirmClick = () => {
     setShowModal(false);
     onConfirm();
@@ -61,7 +61,6 @@ ConfirmActionButton.defaultProps = {
   modalText: "Are you sure you want to delete?",
   modalButtonText: "Confirm",
   buttonClassName: "btn--danger",
-}
+};
 
 export default ConfirmActionButton;
-

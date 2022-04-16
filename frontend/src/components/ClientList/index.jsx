@@ -9,7 +9,9 @@ import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
 import Search from "../Search";
 import { formatUnixTimestamp } from "../../utils/dateUtils";
-import TABLE_NOTIFICATIONS, { getTableNotificationText } from "../../enums/tableNotifications";
+import TABLE_NOTIFICATIONS, {
+  getTableNotificationText,
+} from "../../enums/tableNotifications";
 import styles from "./index.module.scss";
 
 const ClientList = () => {
