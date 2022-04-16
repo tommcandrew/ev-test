@@ -17,10 +17,6 @@ import styles from "./index.module.scss";
 const ClientList = () => {
   const [searchText, setSearchText] = useState("");
 
-  const handleSearch = (e) => {
-    setSearchText(e.target.value);
-  };
-
   const { loading, error, data } = useQuery(CLIENTS);
 
   const [deleteClient] = useMutation(DELETE_CLIENT, {
@@ -34,6 +30,10 @@ const ClientList = () => {
       },
     ],
   });
+  
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+  };
 
   const getFilteredClients = (clients) => {
     if (searchText) {
