@@ -9,6 +9,7 @@ import { LOADING_ERROR, NO_DATA } from "../../constants/notificationMessages";
 import { FaTrashAlt } from "react-icons/fa";
 import ConfirmActionButton from "../ConfirmActionButton";
 import Search from "../Search";
+import { formatUnixTimestamp } from "../../utils/dateUtils";
 import styles from "./index.module.scss";
 
 const ClientList = () => {
@@ -24,7 +25,7 @@ const ClientList = () => {
     onCompleted: (data) => {
       toast.success(`${data.deleteClient.name} deleted`);
     },
-    onError: (err) => toast.error('Could not delete client'),
+    onError: () => toast.error("Could not delete client"),
     refetchQueries: [
       {
         query: CLIENTS,
@@ -65,9 +66,7 @@ const ClientList = () => {
         )
       )
       .map((client) => {
-        const formattedCreatedDate = new Date(
-          Number(client.createdAt)
-        ).toLocaleDateString("en-UK");
+        const formattedCreatedDate = formatUnixTimestamp(client.createdAt);
         return (
           <tr key={client.email} className={styles.row}>
             <td>{client.name}</td>
