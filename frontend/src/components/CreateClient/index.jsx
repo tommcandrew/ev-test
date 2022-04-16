@@ -11,7 +11,7 @@ function CreateClient() {
   const [showModal, setShowModal] = useState(false);
 
   const [createClient] = useMutation(CREATE_CLIENT, {
-    onError: (err) => toast.error(err.message),
+    onError: () => toast.error("Could not create client"),
     onCompleted: () => {
       setShowModal(false);
       toast.success("Client created");

@@ -43,7 +43,7 @@ const ConfirmActionButton = ({
   };
 
   return (
-    <div className="confirmAction__wrapper">
+    <div>
       {renderButton()}
       {renderModal()}
     </div>
